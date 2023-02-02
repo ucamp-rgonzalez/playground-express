@@ -1,12 +1,15 @@
-import dotenv from 'dotenv';
 import express from 'express';
-
-dotenv.config();
+import bodyParser from 'body-parser';
 
 import './config/database.js';
+import userRoutes from './routes/users.js'
 
 const app = express();
 
-app.listen(+process.env.PORT || 3000, () => {
+app.use(bodyParser.json());
+
+userRoutes(app);
+
+app.listen(+process.env.PORT || 5000, () => {
   console.log('Server running');
 });
